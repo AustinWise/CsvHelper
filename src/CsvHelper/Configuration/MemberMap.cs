@@ -213,6 +213,7 @@ namespace CsvHelper.Configuration
 			return this;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Specifies an expression to be used to validate a field when reading.
 		/// </summary>
@@ -246,5 +247,6 @@ namespace CsvHelper.Configuration
 
 			return this;
 		}
+#endif
 	}
 }

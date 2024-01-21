@@ -130,6 +130,7 @@ namespace CsvHelper.Configuration
 		/// </summary>
 		public virtual bool IsConstantSet { get; set; }
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Gets or sets the expression used to convert data in the
 		/// row to the member.
@@ -151,6 +152,7 @@ namespace CsvHelper.Configuration
 		/// Gets or sets the expression used to get the validation message when validation fails.
 		/// </summary>
 		public virtual Expression ValidateMessageExpression { get; set; }
+#endif
 
 		/// <summary>
 		/// Gets or sets a value indicating if a field is optional.

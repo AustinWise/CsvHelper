@@ -221,7 +221,11 @@ namespace CsvHelper
 					continue;
 				}
 
-				if (memberMap.Data.ReadingConvertExpression != null || memberMap.Data.IsConstantSet)
+				if (
+#if FEATURE_DYNAMIC_CODE
+					memberMap.Data.ReadingConvertExpression != null ||
+#endif
+					memberMap.Data.IsConstantSet)
 				{
 					// If ConvertUsing and Constant don't require a header.
 					continue;
