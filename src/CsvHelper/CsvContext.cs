@@ -96,6 +96,7 @@ namespace CsvHelper
 			Maps = new ClassMapCollection(this);
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Use a <see cref="ClassMap{T}" /> to configure mappings.
 		/// When using a class map, no members are mapped by default.
@@ -161,6 +162,7 @@ namespace CsvHelper
 		{
 			Maps.Remove(classMapType);
 		}
+#endif
 
 		/// <summary>
 		/// Unregisters all class maps.
@@ -170,6 +172,7 @@ namespace CsvHelper
 			Maps.Clear();
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Generates a <see cref="ClassMap"/> for the type.
 		/// </summary>
@@ -198,5 +201,6 @@ namespace CsvHelper
 
 			return map;
 		}
+#endif
 	}
 }

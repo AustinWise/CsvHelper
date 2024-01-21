@@ -178,6 +178,7 @@ namespace CsvHelper.TypeConversion
 			return new DefaultTypeConverter();
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Gets the converter for the given member. If an attribute is
 		/// found on the member, that will be used, otherwise the cache
@@ -194,6 +195,7 @@ namespace CsvHelper.TypeConversion
 
 			return GetConverter(member.MemberType());
 		}
+#endif
 
 		/// <summary>
 		/// Gets the converter for the given <see cref="System.Type"/>.
@@ -234,9 +236,13 @@ namespace CsvHelper.TypeConversion
 			AddConverter(typeof(TimeOnly), new TimeOnlyConverter());
 #endif
 
+#if FEATURE_DYNAMIC_CODE
 			AddConverterFactory(new EnumConverterFactory());
+#endif
 			AddConverterFactory(new NullableConverterFactory());
+#if FEATURE_DYNAMIC_CODE
 			AddConverterFactory(new CollectionConverterFactory());
+#endif
 		}
 	}
 }

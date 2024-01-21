@@ -16,10 +16,13 @@ namespace CsvHelper.TypeConversion
 		/// <inheritdoc/>
 		public virtual object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
 		{
+			// AOT_XXX: consider adding back support for UseDefaultOnConversionFailure
+#if FEATURE_DYNAMIC_CODE
 			if (memberMapData.UseDefaultOnConversionFailure && memberMapData.IsDefaultSet && memberMapData.Member.MemberType() == memberMapData.Default?.GetType())
 			{
 				return memberMapData.Default;
 			}
+#endif
 
 			if (!row.Configuration.ExceptionMessagesContainRawData)
 			{
@@ -32,7 +35,9 @@ namespace CsvHelper.TypeConversion
 				$"The conversion cannot be performed.{Environment.NewLine}" +
 				$"    Text: '{text}'{Environment.NewLine}" +
 				$"    MemberName: {memberMapData.Member?.Name}{Environment.NewLine}" +
+#if FEATURE_DYNAMIC_CODE
 				$"    MemberType: {memberMapData.Member?.MemberType().FullName}{Environment.NewLine}" +
+#endif
 				$"    TypeConverter: '{memberMapData.TypeConverter?.GetType().FullName}'";
 			throw new TypeConverterException(this, memberMapData, text, row.Context, message);
 		}

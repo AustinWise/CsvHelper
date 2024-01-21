@@ -70,8 +70,10 @@ namespace CsvHelper.Configuration
 		/// <inheritdoc/>
 		public virtual bool ExceptionMessagesContainRawData { get; set; } = true;
 
+#if FEATURE_DYNAMIC_CODE
 		/// <inheritdoc/>
 		public virtual GetConstructor GetConstructor { get; set; } = ConfigurationFunctions.GetConstructor;
+#endif
 
 		/// <inheritdoc/>
 		public virtual GetDynamicPropertyName GetDynamicPropertyName { get; set; } = ConfigurationFunctions.GetDynamicPropertyName;
@@ -150,8 +152,10 @@ namespace CsvHelper.Configuration
 		/// <inheritdoc/>
 		public virtual ShouldSkipRecord? ShouldSkipRecord { get; set; }
 
+#if FEATURE_DYNAMIC_CODE
 		/// <inheritdoc/>
 		public virtual ShouldUseConstructorParameters ShouldUseConstructorParameters { get; set; } = ConfigurationFunctions.ShouldUseConstructorParameters;
+#endif
 
 		/// <inheritdoc/>
 		public virtual TrimOptions TrimOptions { get; set; }

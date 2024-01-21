@@ -191,6 +191,7 @@ namespace CsvHelper.Configuration
 			return this;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Specifies the <see cref="TypeConverter"/> to use
 		/// when converting the parameter to and from a CSV field.
@@ -203,6 +204,7 @@ namespace CsvHelper.Configuration
 
 			return this;
 		}
+#endif
 
 		internal int GetMaxIndex()
 		{

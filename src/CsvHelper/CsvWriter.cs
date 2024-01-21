@@ -32,7 +32,9 @@ namespace CsvHelper
 	{
 		private readonly TextWriter writer;
 		private readonly CsvContext context;
+#if FEATURE_DYNAMIC_CODE
 		private readonly Lazy<RecordManager> recordManager;
+#endif
 		private readonly TypeConverterCache typeConverterCache;
 		private readonly TrimOptions trimOptions;
 		private readonly ShouldQuote shouldQuote;
@@ -104,7 +106,9 @@ namespace CsvHelper
 			Configuration = configuration;
 			context = new CsvContext(this);
 			typeConverterCache = context.TypeConverterCache;
+#if FEATURE_DYNAMIC_CODE
 			recordManager = new Lazy<RecordManager>(() => ObjectResolver.Current.Resolve<RecordManager>(this));
+#endif
 
 			comment = configuration.Comment;
 			bufferSize = configuration.BufferSize;
@@ -263,7 +267,11 @@ namespace CsvHelper
 
 			if (context.Maps[type] == null)
 			{
+#if FEATURE_DYNAMIC_CODE
 				context.Maps.Add(context.AutoMap(type));
+#else
+				throw new ConfigurationException($"Missing type map for {type}.");
+#endif
 			}
 
 			var members = new MemberMapCollection();
@@ -328,6 +336,7 @@ namespace CsvHelper
 			hasHeaderBeenWritten = true;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <inheritdoc/>
 		public virtual void WriteRecord<T>(T? record)
 		{
@@ -494,6 +503,7 @@ namespace CsvHelper
 				throw new WriterException(context, "An unexpected error occurred. See inner exception for details.", ex);
 			}
 		}
+#endif
 #endif
 
 		/// <inheritdoc/>

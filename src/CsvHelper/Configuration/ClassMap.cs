@@ -19,6 +19,7 @@ namespace CsvHelper.Configuration
 	///</summary>
 	public abstract class ClassMap
 	{
+#if FEATURE_DYNAMIC_CODE
 		private static readonly List<Type> enumerableConverters = new List<Type>
 		{
 			typeof(ArrayConverter),
@@ -29,6 +30,7 @@ namespace CsvHelper.Configuration
 			typeof(IEnumerableConverter),
 			typeof(IEnumerableGenericConverter)
 		};
+#endif
 
 		/// <summary>
 		/// The type of the class this map is for.
@@ -59,6 +61,7 @@ namespace CsvHelper.Configuration
 			ClassType = classType;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Maps a member to a CSV field.
 		/// </summary>
@@ -85,6 +88,7 @@ namespace CsvHelper.Configuration
 
 			return memberMap;
 		}
+#endif
 
 		/// <summary>
 		/// Maps a non-member to a CSV field. This allows for writing
@@ -100,6 +104,7 @@ namespace CsvHelper.Configuration
 			return memberMap;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Maps a member to another class map.
 		/// </summary>
@@ -234,6 +239,7 @@ namespace CsvHelper.Configuration
 
 			AutoMapMembers(this, context, mapParents);
 		}
+#endif
 
 		/// <summary>
 		/// Get the largest index for the
@@ -294,6 +300,7 @@ namespace CsvHelper.Configuration
 			return indexStart;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Auto maps the given map and checks for circular references as it goes.
 		/// </summary>
@@ -571,6 +578,7 @@ namespace CsvHelper.Configuration
 
 			return false;
 		}
+#endif
 
 		/// <summary>
 		/// Gets the generic type for this class map.

@@ -27,6 +27,7 @@ namespace CsvHelper.Configuration
 		/// </summary>
 		public virtual MemberMapTypeConverterOption TypeConverterOption { get; protected set; }
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Creates an instance of <see cref="MemberMap"/> using the given Type and <see cref="MemberInfo"/>.
 		/// </summary>
@@ -39,6 +40,7 @@ namespace CsvHelper.Configuration
 
 			return memberMap;
 		}
+#endif
 
 		/// <summary>
 		/// When reading, is used to get the field
@@ -123,6 +125,7 @@ namespace CsvHelper.Configuration
 			return this;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// The default value that will be used when reading when
 		/// the CSV field is empty.
@@ -171,6 +174,7 @@ namespace CsvHelper.Configuration
 
 			return this;
 		}
+#endif
 
 		/// <summary>
 		/// Specifies the <see cref="TypeConverter"/> to use
@@ -184,6 +188,7 @@ namespace CsvHelper.Configuration
 			return this;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Specifies the <see cref="TypeConverter"/> to use
 		/// when converting the member to and from a CSV field.
@@ -196,6 +201,7 @@ namespace CsvHelper.Configuration
 
 			return this;
 		}
+#endif
 
 		/// <summary>
 		/// Ignore the member when reading if no matching field name can be found.

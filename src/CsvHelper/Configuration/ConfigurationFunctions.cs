@@ -124,6 +124,7 @@ namespace CsvHelper.Configuration
 			return args.Header;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Returns <c>true</c> if <paramref name="args.ParameterType"/>:
 		/// 1. does not have a parameterless constructor
@@ -155,6 +156,7 @@ namespace CsvHelper.Configuration
 		{
 			return args.ClassType.GetConstructorWithMostParameters();
 		}
+#endif
 
 		/// <summary>
 		/// Returns the header name ran through <see cref="PrepareHeaderForMatch(PrepareHeaderForMatchArgs)"/>.

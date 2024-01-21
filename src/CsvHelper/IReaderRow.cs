@@ -91,6 +91,7 @@ namespace CsvHelper
 		/// <returns>The raw field.</returns>
 		string? GetField(string name, int index);
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Gets the field converted to <see cref="Object"/> using
 		/// the specified <see cref="ITypeConverter"/>.
@@ -424,5 +425,6 @@ namespace CsvHelper
 		/// <param name="type">The <see cref="Type"/> of the record.</param>
 		/// <returns>The record.</returns>
 		object? GetRecord(Type type);
+#endif
 	}
 }

@@ -95,6 +95,7 @@ namespace CsvHelper
 			return new CsvWriter(writer, cultureInfo);
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Access point for fluent interface to dynamically build a <see cref="ClassMap{T}"/>
 		/// </summary>
@@ -104,5 +105,6 @@ namespace CsvHelper
 		{
 			return new ClassMapBuilder<T>();
 		}
+#endif
 	}
 }

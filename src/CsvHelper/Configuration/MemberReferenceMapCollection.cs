@@ -130,6 +130,8 @@ namespace CsvHelper.Configuration
 			list.RemoveAt(index);
 		}
 
+
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Finds the <see cref="MemberReferenceMap"/> using the given member expression.
 		/// </summary>
@@ -141,6 +143,7 @@ namespace CsvHelper.Configuration
 			var member = ReflectionHelper.GetMember(expression);
 			return Find(member);
 		}
+#endif
 
 		/// <summary>
 		/// Finds the <see cref="MemberReferenceMap"/> using the given member.

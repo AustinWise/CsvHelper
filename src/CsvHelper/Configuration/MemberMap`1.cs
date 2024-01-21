@@ -166,6 +166,7 @@ namespace CsvHelper.Configuration
 			return this;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Specifies the <see cref="TypeConverter"/> to use
 		/// when converting the member to and from a CSV field.
@@ -222,6 +223,7 @@ namespace CsvHelper.Configuration
 
 			return this;
 		}
+#endif
 
 		/// <summary>
 		/// Ignore the member when reading if no matching field name can be found.

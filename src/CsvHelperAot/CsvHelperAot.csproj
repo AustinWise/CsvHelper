@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>CsvHelper</RootNamespace>
+		<IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
+		<!-- Turn of warnings about nullability -->
+		<NoWarn>CS8632</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="../CsvHelper/*.cs" />
+		<Compile Include="../CsvHelper/Configuration/*.cs" LinkBase="Configuration" />
+		<Compile Include="../CsvHelper/Configuration/Attributes/*.cs" LinkBase="Configuration/Attributes" />
+		<Compile Include="../CsvHelper/TypeConversion/*.cs" LinkBase="TypeConversion" />
+		<Compile Include="../CsvHelper/Delegates/*.cs" LinkBase="Delegates" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="../CsvHelper/CsvDataReader.cs" />
+		<Compile Remove="../CsvHelper/ObjectCreator.cs" />
+		<Compile Remove="../CsvHelper/ObjectResolver.cs" />
+		<Compile Remove="../CsvHelper/ReflectionExtensions.cs" />
+		<Compile Remove="../CsvHelper/ReflectionHelper.cs" />
+		<Compile Remove="../CsvHelper/Configuration/Attributes/TypeConverterAttribute.cs" />
+		<Compile Remove="../CsvHelper/Configuration/ClassMap`1.cs" />
+		<Compile Remove="../CsvHelper/Configuration/ClassMapBuilder.cs" />
+		<Compile Remove="../CsvHelper/Configuration/DefaultClassMap`1.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/ArrayConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/CollectionGenericConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/CollectionConverterFactory.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/IEnumerableConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/IEnumerableGenericConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/IDictionaryConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/IDictionaryGenericConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/EnumerableConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/EnumConverter.cs" />
+		<Compile Remove="../CsvHelper/TypeConversion/EnumConverterFactory.cs" />
+	</ItemGroup>
+
+</Project>

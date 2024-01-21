@@ -58,6 +58,7 @@ namespace CsvHelper.Configuration
 			this.context = context;
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Finds the <see cref="ClassMap"/> for the specified record type.
 		/// </summary>
@@ -98,6 +99,7 @@ namespace CsvHelper.Configuration
 
 			data.Remove(type);
 		}
+#endif
 
 		/// <summary>
 		/// Removes all maps.
@@ -107,6 +109,7 @@ namespace CsvHelper.Configuration
 			data.Clear();
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Goes up the inheritance tree to find the type instance of CsvClassMap{}.
 		/// </summary>
@@ -184,5 +187,6 @@ namespace CsvHelper.Configuration
 				}
 			}
 		}
+#endif
 	}
 }

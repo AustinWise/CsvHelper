@@ -125,11 +125,13 @@ namespace CsvHelper
 		/// <param name="type">The type of the record.</param>
 		void WriteHeader(Type type);
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Writes the record to the CSV file.
 		/// </summary>
 		/// <typeparam name="T">The type of the record.</typeparam>
 		/// <param name="record">The record to write.</param>
 		void WriteRecord<T>(T record);
+#endif
 	}
 }

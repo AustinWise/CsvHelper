@@ -53,6 +53,7 @@ namespace CsvHelper.Configuration
 		/// </summary>
 		PrepareHeaderForMatch PrepareHeaderForMatch { get; }
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Determines if constructor parameters should be used to create
 		/// the class instead of the default constructor and members.
@@ -63,6 +64,7 @@ namespace CsvHelper.Configuration
 		/// Chooses the constructor to use for constructor mapping.
 		/// </summary>
 		GetConstructor GetConstructor { get; }
+#endif
 
 		/// <summary>
 		/// Gets the name to use for the property of the dynamic object.

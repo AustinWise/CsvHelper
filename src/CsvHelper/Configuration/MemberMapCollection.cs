@@ -197,6 +197,7 @@ namespace CsvHelper.Configuration
 			set { list[index] = value; }
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Finds the <see cref="MemberMap"/> using the given member expression.
 		/// </summary>
@@ -208,6 +209,7 @@ namespace CsvHelper.Configuration
 			var member = ReflectionHelper.GetMember(expression);
 			return Find(member);
 		}
+#endif
 
 		/// <summary>
 		/// Finds the <see cref="MemberMap"/> using the given member.

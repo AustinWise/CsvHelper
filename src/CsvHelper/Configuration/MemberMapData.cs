@@ -14,6 +14,7 @@ namespace CsvHelper.Configuration
 	/// </summary>
 	public class MemberMapData
 	{
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Gets the member type.
 		/// </summary>
@@ -39,6 +40,7 @@ namespace CsvHelper.Configuration
 				return typeof(string);
 			}
 		}
+#endif
 
 		/// <summary>
 		/// Gets the <see cref="MemberInfo"/> that the data

@@ -37,6 +37,7 @@ namespace CsvHelper
 		/// <returns>True if there are more records, otherwise false.</returns>
 		Task<bool> ReadAsync();
 
+#if FEATURE_DYNAMIC_CODE
 		/// <summary>
 		/// Gets all the records in the CSV file and
 		/// converts each to <see cref="Type"/> T. The Read method
@@ -121,6 +122,7 @@ namespace CsvHelper
 		/// /// <param name="cancellationToken">The cancellation token to stop the writing.</param>
 		/// <returns>An <see cref="IAsyncEnumerable{T}"/> of records.</returns>
 		IAsyncEnumerable<T> EnumerateRecordsAsync<T>(T record, CancellationToken cancellationToken = default(CancellationToken));
+#endif
 #endif
 	}
 }

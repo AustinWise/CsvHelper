@@ -23,7 +23,9 @@ namespace CsvHelper
 	/// </summary>
 	public class CsvReader : IReader
 	{
+#if FEATURE_DYNAMIC_CODE
 		private readonly Lazy<RecordManager> recordManager;
+#endif
 		private readonly bool detectColumnCountChanges;
 		private readonly Dictionary<string, List<int>> namedIndexes = new Dictionary<string, List<int>>();
 		private readonly Dictionary<string, (string, int)> namedIndexCache = new Dictionary<string, (string, int)>();
@@ -93,7 +95,9 @@ namespace CsvHelper
 			this.parser = parser ?? throw new ArgumentNullException(nameof(parser));
 			context = parser.Context ?? throw new InvalidOperationException($"For {nameof(IParser)} to be used in {nameof(CsvReader)}, {nameof(IParser.Context)} must also implement {nameof(CsvContext)}.");
 			context.Reader = this;
+#if FEATURE_DYNAMIC_CODE
 			recordManager = new Lazy<RecordManager>(() => ObjectResolver.Current.Resolve<RecordManager>(this));
+#endif
 
 			cultureInfo = Configuration.CultureInfo;
 			detectColumnCountChanges = Configuration.DetectColumnCountChanges;
@@ -150,7 +154,11 @@ namespace CsvHelper
 
 			if (context.Maps[type] == null)
 			{
+#if FEATURE_DYNAMIC_CODE
 				context.Maps.Add(context.AutoMap(type));
+#else
+				throw new ConfigurationException($"Missing type map for {type}.");
+#endif
 			}
 
 			var map = context.Maps[type];
@@ -519,6 +527,7 @@ namespace CsvHelper
 			return GetField<T>(fieldIndex, converter);
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <inheritdoc/>
 		public virtual T? GetField<T, TConverter>(int index) where TConverter : ITypeConverter
 		{
@@ -622,6 +631,7 @@ namespace CsvHelper
 
 			return TryGetField(type, fieldIndex, converter, out field);
 		}
+#endif
 
 		/// <inheritdoc/>
 		public virtual bool TryGetField<T>(int index, out T? field)
@@ -700,6 +710,7 @@ namespace CsvHelper
 			return TryGetField(fieldIndex, converter, out field);
 		}
 
+#if FEATURE_DYNAMIC_CODE
 		/// <inheritdoc/>
 		public virtual bool TryGetField<T, TConverter>(int index, out T? field) where TConverter : ITypeConverter
 		{
@@ -726,7 +737,10 @@ namespace CsvHelper
 			var converter = ObjectResolver.Current.Resolve<TConverter>();
 			return TryGetField(name, index, converter, out field);
 		}
+#endif
 
+
+#if FEATURE_DYNAMIC_CODE
 		/// <inheritdoc/>
 		public virtual T? GetRecord<T>()
 		{
@@ -1212,6 +1226,7 @@ namespace CsvHelper
 				yield return record;
 			}
 		}
+#endif
 #endif
 
 		/// <summary>
